@@ -10,6 +10,8 @@ signal flash_light
 
 @export var flash: flashlight
 @export var charges: TextureProgressBar
+@export var cam: Node3D
+
 
 
 
@@ -39,8 +41,18 @@ func _input(event):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	if Input.is_action_just_pressed("flash"):
+	if Input.is_action_just_pressed("flash") and !cam.visible:
 		if flash:
 			flash.flash()
+	if Input.is_action_just_pressed("cam"):
+		await get_tree().process_frame
+		if cam.visible:
+			cam.visible = false
+			flash.visible = true
+		else:
+			cam.visible = true
+			flash.visible = false
+		
+	
 			
 		

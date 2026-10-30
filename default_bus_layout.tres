@@ -1,0 +1,64 @@
+[gd_resource type="AudioBusLayout" format=3 uid="uid://nqv6hy16n1vp"]
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
+resource_name = "Compressor"
+threshold = -5.8
+ratio = 13.4
+gain = -16.9
+attack_us = 1605.0
+release_ms = 1583.0
+sidechain = &"Master"
+
+[sub_resource type="AudioEffectNotchFilter" id="AudioEffectNotchFilter_j3pel"]
+resource_name = "NotchFilter"
+cutoff_hz = 76.0
+resonance = 1.0
+db = 2
+
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_j3pel"]
+resource_name = "Chorus"
+voice_count = 4
+wet = 1.0
+voice/3/delay_ms = 12.0
+voice/3/rate_hz = 1.0
+voice/3/depth_ms = 0.0
+voice/3/level_db = 0.0
+voice/3/cutoff_hz = 16000.0
+voice/3/pan = 0.0
+voice/4/delay_ms = 12.0
+voice/4/rate_hz = 1.0
+voice/4/depth_ms = 0.0
+voice/4/level_db = 0.0
+voice/4/cutoff_hz = 16000.0
+voice/4/pan = 0.0
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
+resource_name = "Reverb"
+
+[sub_resource type="AudioEffectBandLimitFilter" id="AudioEffectBandLimitFilter_j3pel"]
+resource_name = "BandLimitFilter"
+
+[sub_resource type="AudioEffectEQ10" id="AudioEffectEQ10_j3pel"]
+resource_name = "EQ10"
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_j3pel"]
+resource_name = "Distortion"
+pre_gain = -12.63
+drive = 0.66
+post_gain = -24.63
+
+[resource]
+bus/0/effect/0/effect = SubResource("AudioEffectCompressor_j3pel")
+bus/0/effect/0/enabled = true
+bus/0/effect/1/effect = SubResource("AudioEffectNotchFilter_j3pel")
+bus/0/effect/1/enabled = true
+bus/0/effect/2/effect = SubResource("AudioEffectChorus_j3pel")
+bus/0/effect/2/enabled = true
+bus/0/effect/3/effect = SubResource("AudioEffectReverb_j3pel")
+bus/0/effect/3/enabled = true
+bus/0/effect/4/effect = SubResource("AudioEffectBandLimitFilter_j3pel")
+bus/0/effect/4/enabled = true
+bus/0/effect/5/effect = SubResource("AudioEffectEQ10_j3pel")
+bus/0/effect/5/enabled = true
+bus/0/effect/6/effect = SubResource("AudioEffectDistortion_j3pel")
+bus/0/effect/6/enabled = true
