@@ -1,0 +1,30 @@
+[gd_resource type="Compositor" format=3 uid="uid://c4e70083x3a5c"]
+
+[ext_resource type="Script" uid="uid://brgnf2q2sc0yf" path="res://addons/compositor_effects/ps1_dither/post_process_ps1_dither.gd" id="1_fbudd"]
+[ext_resource type="Script" uid="uid://k0g2df2c2aar" path="res://addons/compositor_effects/crt_monitor/post_process_crt_monitor.gd" id="2_vkbae"]
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_vcm4j"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("1_fbudd")
+color_depth = 8.0
+metadata/_custom_type_script = "uid://brgnf2q2sc0yf"
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_kkryu"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("2_vkbae")
+monitor_type = 4
+scanline_depth = 1.0
+metadata/_custom_type_script = "uid://k0g2df2c2aar"
+
+[resource]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_vcm4j"), SubResource("CompositorEffect_kkryu")])
