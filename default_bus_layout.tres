@@ -2,11 +2,12 @@
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
 resource_name = "Compressor"
-threshold = -5.8
+threshold = -9.6
 ratio = 13.4
 gain = -16.9
-attack_us = 1605.0
-release_ms = 1583.0
+attack_us = 945.0
+release_ms = 1088.0
+mix = 0.3
 sidechain = &"Master"
 
 [sub_resource type="AudioEffectNotchFilter" id="AudioEffectNotchFilter_j3pel"]
@@ -17,35 +18,47 @@ db = 2
 
 [sub_resource type="AudioEffectChorus" id="AudioEffectChorus_j3pel"]
 resource_name = "Chorus"
-voice_count = 4
 wet = 1.0
-voice/3/delay_ms = 12.0
-voice/3/rate_hz = 1.0
-voice/3/depth_ms = 0.0
-voice/3/level_db = 0.0
-voice/3/cutoff_hz = 16000.0
-voice/3/pan = 0.0
-voice/4/delay_ms = 12.0
-voice/4/rate_hz = 1.0
-voice/4/depth_ms = 0.0
-voice/4/level_db = 0.0
-voice/4/cutoff_hz = 16000.0
-voice/4/pan = 0.0
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
 resource_name = "Reverb"
 
 [sub_resource type="AudioEffectBandLimitFilter" id="AudioEffectBandLimitFilter_j3pel"]
 resource_name = "BandLimitFilter"
+cutoff_hz = 1545.0
 
 [sub_resource type="AudioEffectEQ10" id="AudioEffectEQ10_j3pel"]
 resource_name = "EQ10"
 
 [sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_j3pel"]
 resource_name = "Distortion"
-pre_gain = -12.63
+pre_gain = -15.18
 drive = 0.66
 post_gain = -24.63
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_g28q7"]
+resource_name = "LowPassFilter"
+
+[sub_resource type="AudioEffectHardLimiter" id="AudioEffectHardLimiter_j3pel"]
+resource_name = "HardLimiter"
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_g28q7"]
+resource_name = "Reverb"
+room_size = 0.35
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_j3pel"]
+resource_name = "LowPassFilter"
+
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_j3pel"]
+resource_name = "Amplify"
+volume_db = -14.62
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_n8wo2"]
+resource_name = "Reverb"
+room_size = 0.3
+
+[sub_resource type="AudioEffectEQ6" id="AudioEffectEQ6_j3pel"]
+resource_name = "EQ6"
 
 [resource]
 bus/0/effect/0/effect = SubResource("AudioEffectCompressor_j3pel")
@@ -55,10 +68,36 @@ bus/0/effect/1/enabled = true
 bus/0/effect/2/effect = SubResource("AudioEffectChorus_j3pel")
 bus/0/effect/2/enabled = true
 bus/0/effect/3/effect = SubResource("AudioEffectReverb_j3pel")
-bus/0/effect/3/enabled = true
+bus/0/effect/3/enabled = false
 bus/0/effect/4/effect = SubResource("AudioEffectBandLimitFilter_j3pel")
 bus/0/effect/4/enabled = true
 bus/0/effect/5/effect = SubResource("AudioEffectEQ10_j3pel")
 bus/0/effect/5/enabled = true
 bus/0/effect/6/effect = SubResource("AudioEffectDistortion_j3pel")
 bus/0/effect/6/enabled = true
+bus/0/effect/7/effect = SubResource("AudioEffectLowPassFilter_g28q7")
+bus/0/effect/7/enabled = false
+bus/0/effect/8/effect = SubResource("AudioEffectHardLimiter_j3pel")
+bus/0/effect/8/enabled = true
+bus/1/name = &"foot"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectReverb_g28q7")
+bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectLowPassFilter_j3pel")
+bus/1/effect/1/enabled = true
+bus/1/effect/2/effect = SubResource("AudioEffectAmplify_j3pel")
+bus/1/effect/2/enabled = true
+bus/2/name = &"flash"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectReverb_n8wo2")
+bus/2/effect/0/enabled = true
+bus/2/effect/1/effect = SubResource("AudioEffectEQ6_j3pel")
+bus/2/effect/1/enabled = true

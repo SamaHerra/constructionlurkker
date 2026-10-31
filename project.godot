@@ -13,11 +13,17 @@ config_version=5
 config/name="ConstructionLurkker"
 run/main_scene="uid://kjqucow1fwvh"
 config/features=PackedStringArray("4.8")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [audio]
 
 buses/default_bus_layout="uid://nqv6hy16n1vp"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/footstepper/plugin.cfg", "res://addons/ridiculous_coding/plugin.cfg")
 
 [global_group]
 

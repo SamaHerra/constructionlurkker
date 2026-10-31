@@ -1,6 +1,7 @@
 class_name flashlight extends SpotLight3D
 
 @export var flicker_chance:int=5
+@export var cam: AudioStreamPlayer3D
 
 signal update
 
@@ -15,6 +16,7 @@ func flash():
 	update.emit()
 	cooldown = 160
 	light_energy = 10
+	cam.play()
 
 var original_energy:float
 # Called when the node enters the scene tree for the first time.
@@ -23,7 +25,8 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func flicker():
-	light_energy = lerpf(light_energy,randf_range(0.0,0.4),randf_range(0.05,0.9))
+	if cooldown < 50:
+		light_energy = lerpf(light_energy,randf_range(0.0,0.4),randf_range(0.05,0.9))
 
 func _physics_process(delta: float) -> void:
 	if cooldown > 0:

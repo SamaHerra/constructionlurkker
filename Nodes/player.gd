@@ -49,7 +49,9 @@ func _input(event):
 		if cam.visible:
 			cam.visible = false
 			flash.visible = true
+			$cam.stop()
 		else:
+			$cam.play()
 			cam.visible = true
 			flash.visible = false
 		
