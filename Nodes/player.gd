@@ -14,6 +14,14 @@ signal flash_light
 
 
 
+func _ready() -> void:
+	if get_viewport().use_xr:
+		$XRNode3D/XRCam.make_current()
+		flash.reparent($XRNode3D/left_hand)
+		cam.reparent($XRNode3D/right_hand)
+	else:
+		$XRNode3D.visible = false
+		
 
 func update_charges():
 	flash_light.emit()
@@ -21,13 +29,19 @@ func update_charges():
 
 func _physics_process(delta):
 	velocity.y += -gravity * delta
-	var input = Input.get_vector("left", "right", "forward", "back")
+	var input:Vector2
+	if get_viewport().use_xr:
+		input = $XRNode3D/left_hand.get_vector2("primary")
+	else:
+		input = Input.get_vector("left", "right", "forward", "back")
 	var movement_dir = transform.basis * Vector3(input.x, 0, input.y)
 	if Input:
 		player_move.emit(global_position)
 	velocity.x = movement_dir.x * speed
 	velocity.z = movement_dir.z * speed
 	move_and_slide()
+	if get_viewport().use_xr:
+		global_rotation_degrees.y = $XRNode3D/XRCam.global_rotation_degrees.y
 	
 	
 func _input(event):
@@ -41,10 +55,10 @@ func _input(event):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	if Input.is_action_just_pressed("flash") and !cam.visible:
+	if (Input.is_action_just_pressed("flash") or $XRNode3D/left_hand.is_button_pressed("trigger")) and !cam.visible:
 		if flash:
 			flash.flash()
-	if Input.is_action_just_pressed("cam"):
+	if Input.is_action_just_pressed("cam") or $XRNode3D/right_hand.is_button_pressed("primary_click"):
 		await get_tree().process_frame
 		if cam.visible:
 			cam.visible = false

@@ -157,3 +157,8 @@ cam={
 "script": null
 )]
 }
+
+[xr]
+
+openxr/enabled=true
+shaders/enabled=true
